@@ -6,7 +6,7 @@ const Create = () => {
     const [ title, setTitle] = useState('');
     const [body, setBody] = useState('')
     const [ author, setAuthor] = useState('')
-    const [isPending, setIsPending] = useState('flase')
+    const [isPending, setIsPending] = useState('false')
     const history = useHistory();
 
     const handleSubmit= (e) => {
@@ -15,7 +15,7 @@ const Create = () => {
         
         setIsPending(true);
 
-        fetch('https/localhost/3000/blogs', {
+        fetch('https/localhost/8000/blogs', {
             method: 'POST',
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(blog)
@@ -25,7 +25,7 @@ const Create = () => {
         })
     }
 
-
+    
 
   return (
     <div className="create">
@@ -38,22 +38,26 @@ const Create = () => {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             />
-            <label>Blog Body</label>
+
+            <label>Blog Body:</label>
             <textarea
                 required
                 value={body}
                 onChange={(e) => setBody(e.target.value)}
             />
+
             <label>Blog Author</label>
             <select
             value={author}
             onChange={(e) => setAuthor(e.target.value)}
             >
-            
+            <option value="Shubham">Shubham</option>
+                    <option value="Satyam">Satyam</option>
+                    <option value="Anmol">Anmol</option>
 
             </select>
             {!isPending && <button> Add Blog</button>}
-            {isPending && <button disabled>Adding Blog</button> }
+            {isPending && <button disabled> Adding Blog</button>}
         </form>
       
     </div>
